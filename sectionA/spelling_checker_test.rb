@@ -23,6 +23,7 @@ class SpellingCheckerTest < Minitest::Test
       a: ['cat *ct*', 'cat ct', %w[catt ct caaat tcat]],
       b: ['dog *dg*', 'dog dg', %w[dogg dg dooog gdog]],
       c: ['rabbit *rabit*', 'rabbit rabit', %w[rabbitt rabit raaaabit trabbit]]
+      # Add as many scenarios as possible
     }
 
     scenarios.each_value do |scenario|

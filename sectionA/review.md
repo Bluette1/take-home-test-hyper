@@ -3,7 +3,11 @@
  - You should not use a loop to solve the problem (Read instructions!)
  - Use Test Driven Development (TDD) to ensure correctness - Test code with examples of common types of pets, namely cat, dog, rabbit, hamster, budgie and parrot
 
-  - You can install a testing gem such as `minitest` by running `gem install minitest` and then add corresponding tests
+  - You can install a testing gem such as `minitest` by running `gem install minitest` and then run corresponding tests 
+
+    ```
+    ruby spelling_checker_test.rb
+    ```
   - Test as many scenarios as possible
 
   Suggested fix:
