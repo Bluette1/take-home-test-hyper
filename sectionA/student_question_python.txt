@@ -1,6 +1,0 @@
-Hi there,
-I'm having a bit of an issue with figuring out how to exactly implement the class
-methods so that I may call them outside of the class when trying to create a new
-SMS object.
-Thanks,
-Student
