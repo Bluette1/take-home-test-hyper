@@ -21,7 +21,8 @@ class SpellingCheckerTest < Minitest::Test
   def test_spelling
     scenarios = {
       a: ['cat *ct*', 'cat ct', %w[catt ct caaat tcat]],
-      b: ['dog *dg*', 'dog dg', %w[dogg dg dooog gdog]]
+      b: ['dog *dg*', 'dog dg', %w[dogg dg dooog gdog]],
+      c: ['rabbit *rabit*', 'rabbit rabit', %w[rabbitt rabit raaaabit trabbit]]
     }
 
     scenarios.each_value do |scenario|
@@ -29,7 +30,6 @@ class SpellingCheckerTest < Minitest::Test
       expected = scenario[0]
       actual = @checker.spellChecker(scenario[1])
       assert_equal expected, actual
-
     end
     # assert_equal 'cat *ct*', @checker.spellChecker('cat ct')
     # assert_equal 'dog *dg*', @checker.spellChecker('dog dg')

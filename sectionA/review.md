@@ -5,7 +5,27 @@
 
   - You can install a testing gem such as `minitest` by running `gem install minitest` and then add corresponding tests
   - Test as many scenarios as possible
-    
+
+  Suggested fix:
+  - Use the [`map`](https://www.rubyguides.com/2018/10/ruby-map-method/) function instead of `each`. 
+    - Change 
+    ```
+    array.each{ |n|
+      if @words.include? n
+        "*#{n}*"
+      end
+    }.join(' ')
+    ```
+    to 
+    ```
+      array.map { |n|
+        if @words.include? n
+          "*#{n}*"
+        else
+          n
+        end
+    }.join(' ')
+    ```
 
 ## Efficiency
  
