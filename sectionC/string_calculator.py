@@ -156,8 +156,11 @@ def remove_whitespace(num):
 
 
 def truncate(num, decimal_places):
-  if (int(num) == num):
-    return int(num)
+  try:
+      if (int(num) == num):
+        return int(num)
+  except:
+      print('Ooops! OverflowError: cannot convert float infinity to integer. Please try different values.')
   return round(num, decimal_places)
 
 def number(num):
@@ -208,3 +211,10 @@ print(string_calc('/ (* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2) 2'))
 print(string_calc('prime (* 2 2 5)'))
 print(string_calc('/ (prime (* 2 2 5)) 100'))
 print(string_calc('/ (* (/ (* (prime (* 2 2 5) 5) 4 3 2) 3) 5 10 2) 2'))
+print(string_calc('* 1.0142320547350045e+304 1.0142320547350045e+304'))
+print(string_calc('/ 1.0142320547350045e+304 1.0142320547350045e-304'))
+print(string_calc('/ (prime (* 2 2 5)) 100'))
+print(string_calc('/ (* (/ (* (prime (* 2 2 5) 5) 4 3 2) 3) 5 10 2) 2'))
+print(string_calc('/ 19 100'))
+
+
