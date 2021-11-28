@@ -22,6 +22,8 @@ e.g. “/ (factorial (* 2 2 5)) 600” -> “12096”
 equivalent to 0, e.g. 4.0 becomes 4.
 ● It gracefully handles overflows.
 '''
+import math 
+
 def string_calc(expression):
   
   # Retrieve the operator and numbers
@@ -71,6 +73,8 @@ def calculate(operator, expression):
     return str(factorial(int(expression[0])))
   elif operator == 'fibonacci':
     return str(fibonacci(int(expression[0])))
+  elif operator == 'prime':
+    return str(prime(int(expression[0])))
   elif operator == '+':
     return str(add(expression))
   elif operator == '-':
@@ -93,10 +97,29 @@ def fibonacci(num):
   while prev < num:
     curr = past + prev
     past = prev
-    prev = curr
-    
+    prev = curr  
   return past
-    
+
+def prime(num):
+  i = num - 1
+  while i > 1:
+    if count_factors(i) == 2:
+      break
+    i -= 1
+  return i
+  
+def count_factors(num):
+  factors = 0
+  i = 1
+  while i <= math.sqrt(num): 
+    if num % i == 0:
+      if i == math.sqrt(num):
+        factors += 1
+      else:
+        factors += 2
+    i += 1
+  return factors
+
 def add(numbers):
   sum = 0
   # Keep track of the highest number of decimal places
@@ -152,6 +175,9 @@ def decimal_places(num):
 print(string_calc('3.2'))
 print(string_calc('factorial 5'))
 print(string_calc('fibonacci 12'))
+print(string_calc('prime 10'))
+print(string_calc('prime 12'))
+print(string_calc('prime 15'))
 print(string_calc('+ 12.5 12.6'))
 print(string_calc('+ 3.22 3.22'))
 print(string_calc('+ 3.22239 3.22239'))
@@ -179,3 +205,6 @@ print(string_calc('/ (* (* 2 2 5) 4 3 2) 3'))
 print(string_calc('* (/ (* (* 2 2 5) 4 3 2) 3) 5'))
 print(string_calc('* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2'))
 print(string_calc('/ (* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2) 2'))
+print(string_calc('prime (* 2 2 5)'))
+print(string_calc('/ (prime (* 2 2 5)) 100'))
+print(string_calc('/ (* (/ (* (prime (* 2 2 5) 5) 4 3 2) 3) 5 10 2) 2'))
