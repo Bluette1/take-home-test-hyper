@@ -33,18 +33,14 @@ class Collection {
 #tail = null
 
 add(value) {
-    let next;
-    for (next = this.#next; next && next.#next; next = next.#next);
-    if (!next) next = this;
-    next.#next
-    
+  
     let newNode = new Node(value); 
     if (this.#head) { // Collection is empty
       this.#head = newNode
       this.#tail = newNode
 
     } else {
-      this.tail.#next = newNode
+      this.tail.next = newNode
       this.#tail = newNode //Point the tail to the last node
     }
     
