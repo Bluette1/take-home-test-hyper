@@ -29,6 +29,9 @@ def string_calc(expression):
   if len(expression_arr) == 1: 
     return expression_arr[0]
   op_stack = []
+  value_stack = []
+  
+  last_index = -1
   
   result = expression
   
@@ -39,41 +42,29 @@ def string_calc(expression):
       # evaluate expression
       start = op_stack.pop()
       space_idx = expression[start + 1: ].index(' ')
-      value = calculate(expression[start + 1: start + 1 + space_idx], expression[start + 1 + space_idx + 1:idx].split(' '))
-      closed_brac_idx = idx
-      # result = result[0:start] + value + result[closed_brac_idx + 1: ]
-      print('value: ', value)
-      while(len(op_stack) > 0):
-        closed_brac_idx += 1
+      if (len(value_stack) == 0):
+        value = calculate(expression[start + 1: start + 1 + space_idx], expression[start + 1 + space_idx + 1:idx].split(' '))
+        value_stack.append(value)
+        last_index = idx
+      else:
+        statement = [value_stack.pop()] + expression[last_index + space_idx + 1:idx].split(' ')
+        value = calculate(expression[start + 1: start + 1 + space_idx], statement)
+        value_stack.append(value)
+        last_index = idx
+
+      while(len(op_stack) > 0 and expression[last_index + 1] == ')'):
+        last_index += 1
         start = op_stack.pop()
         space_idx = expression[start + 1: ].index(' ')
-        value = calculate(expression[start + 1: start + 1 + space_idx], [value])
         print('value: ', value)
-        # result = result[0:start] + value + result[closed_brac_idx + 1: ]
-      result = result[0:start] + value + result[closed_brac_idx + 1: ]
+        value = calculate(expression[start + 1: start + 1 + space_idx], [value])
+      result = result[0:start] + value + expression[last_index + 1:]
 
   result = result.split(' ')
   if len(result) == 1: 
     return result[0]
   else:
     return calculate(result[0], result[1:])
-
-# def calculate(operator, expression):
-  # Check operations
-  # if operator == 'factorial':
-  #   return str(factorial(int(expression[1 ])))
-  # elif operator == 'fibonacci':
-  #   return str(fibonacci(int(expression[1])))
-  # elif operator == '+':
-  #   return str(add(expression[1:]))
-  # elif operator == '-':
-  #   return str(subtract(expression[1:]))
-  # elif operator == '*':
-  #     return str(multiply(expression[1:]))
-  # elif operator == '/':
-  #   return str(divide(expression[1:]))
-  # elif operator == '\t':
-  #   return str(remove_whitespace(expression[1]))
   
 def calculate(operator, expression):  
   if operator == 'factorial':
@@ -158,30 +149,33 @@ def decimal_places(num):
     return 0
   return len(parts[1])
   
-# print(string_calc('3.2'))
-# print(string_calc('factorial 5'))
-# print(string_calc('fibonacci 12'))
-# print(string_calc('+ 12.5 12.6'))
-# print(string_calc('+ 3.22 3.22'))
-# print(string_calc('+ 3.22239 3.22239'))
-# print(string_calc('+ 3.22235 3.22235'))
-# print(string_calc('- 43.7 50'))
-# print(string_calc('* 6 -12'))
-# print(string_calc('* 6 12'))
-# print(string_calc('* 0.1 0.1'))
-# print(string_calc('* -0.1 -0.1'))
-# print(string_calc('* 0.1 -0.1'))
-# print(string_calc('* -0.1 0.1'))
-# print(string_calc('/ 20 10'))
-# print(string_calc('/ 5 2'))
-# print(string_calc('/ 0.5 2'))
-# print(string_calc('/ 0.05 2'))
-# print(string_calc('/ 0.05 0.02'))
-# print(string_calc('/ 0.5 0.2'))
-# print(string_calc('/ 0.05 0.2'))
-# print(string_calc('/ 2 10'))
-# print(string_calc('\t 3.22  '))
+print(string_calc('3.2'))
+print(string_calc('factorial 5'))
+print(string_calc('fibonacci 12'))
+print(string_calc('+ 12.5 12.6'))
+print(string_calc('+ 3.22 3.22'))
+print(string_calc('+ 3.22239 3.22239'))
+print(string_calc('+ 3.22235 3.22235'))
+print(string_calc('- 43.7 50'))
+print(string_calc('* 6 -12'))
+print(string_calc('* 6 12'))
+print(string_calc('* 0.1 0.1'))
+print(string_calc('* -0.1 -0.1'))
+print(string_calc('* 0.1 -0.1'))
+print(string_calc('* -0.1 0.1'))
+print(string_calc('/ 20 10'))
+print(string_calc('/ 5 2'))
+print(string_calc('/ 0.5 2'))
+print(string_calc('/ 0.05 2'))
+print(string_calc('/ 0.05 0.02'))
+print(string_calc('/ 0.5 0.2'))
+print(string_calc('/ 0.05 0.2'))
+print(string_calc('/ 2 10'))
+print(string_calc('\t 3.22  '))
 print(string_calc('/ (factorial (* 2 2 5)) 600'))
 print(string_calc('* (* 2 2 5) 4'))
 print(string_calc('* (* 2 2 5) 4 3 2'))
-# print(string_calc('/ (* (* 2 2 5) 4 3) 3'))
+print(string_calc('/ (* (* 2 2 5) 4 3 2) 3'))
+print(string_calc('* (/ (* (* 2 2 5) 4 3 2) 3) 5'))
+print(string_calc('* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2'))
+print(string_calc('/ (* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2) 2'))
