@@ -58,7 +58,6 @@ def string_calc(expression):
         last_index += 1
         start = op_stack.pop()
         space_idx = expression[start + 1: ].index(' ')
-        print('value: ', value)
         value = calculate(expression[start + 1: start + 1 + space_idx], [value])
       result = result[0:start] + value + expression[last_index + 1:]
 
@@ -85,6 +84,8 @@ def calculate(operator, expression):
     return str(divide(expression))
   elif operator == '\t':
     return str(remove_whitespace(expression[0]))
+  else: 
+    return 'Unknown operator!'
 
 def factorial(num):
   fact = 1
@@ -138,7 +139,10 @@ def subtract(numbers):
 def divide(numbers):
   # Get the highest number of decimal places
   n_decimal_places = max(decimal_places(numbers[0]), decimal_places(numbers[1]))
+  if n_decimal_places == 0: # Round off to atleast to 4 decimalplaces when dividing
+    n_decimal_places = 4
   quotient = number(numbers[0]) / number(numbers[1])
+
   return truncate(quotient, n_decimal_places + 1)
 
 def multiply(numbers):
@@ -155,7 +159,7 @@ def remove_whitespace(num):
   return num.strip()
 
 
-def truncate(num, decimal_places):
+def truncate(num, decimal_places = 2):
   try:
       if (int(num) == num):
         return int(num)
@@ -175,46 +179,3 @@ def decimal_places(num):
     return 0
   return len(parts[1])
   
-print(string_calc('3.2'))
-print(string_calc('factorial 5'))
-print(string_calc('fibonacci 12'))
-print(string_calc('prime 10'))
-print(string_calc('prime 12'))
-print(string_calc('prime 15'))
-print(string_calc('+ 12.5 12.6'))
-print(string_calc('+ 3.22 3.22'))
-print(string_calc('+ 3.22239 3.22239'))
-print(string_calc('+ 3.22235 3.22235'))
-print(string_calc('- 43.7 50'))
-print(string_calc('* 6 -12'))
-print(string_calc('* 6 12'))
-print(string_calc('* 0.1 0.1'))
-print(string_calc('* -0.1 -0.1'))
-print(string_calc('* 0.1 -0.1'))
-print(string_calc('* -0.1 0.1'))
-print(string_calc('/ 20 10'))
-print(string_calc('/ 5 2'))
-print(string_calc('/ 0.5 2'))
-print(string_calc('/ 0.05 2'))
-print(string_calc('/ 0.05 0.02'))
-print(string_calc('/ 0.5 0.2'))
-print(string_calc('/ 0.05 0.2'))
-print(string_calc('/ 2 10'))
-print(string_calc('\t 3.22  '))
-print(string_calc('/ (factorial (* 2 2 5)) 600'))
-print(string_calc('* (* 2 2 5) 4'))
-print(string_calc('* (* 2 2 5) 4 3 2'))
-print(string_calc('/ (* (* 2 2 5) 4 3 2) 3'))
-print(string_calc('* (/ (* (* 2 2 5) 4 3 2) 3) 5'))
-print(string_calc('* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2'))
-print(string_calc('/ (* (/ (* (* 2 2 5) 4 3 2) 3) 5 10 2) 2'))
-print(string_calc('prime (* 2 2 5)'))
-print(string_calc('/ (prime (* 2 2 5)) 100'))
-print(string_calc('/ (* (/ (* (prime (* 2 2 5) 5) 4 3 2) 3) 5 10 2) 2'))
-print(string_calc('* 1.0142320547350045e+304 1.0142320547350045e+304'))
-print(string_calc('/ 1.0142320547350045e+304 1.0142320547350045e-304'))
-print(string_calc('/ (prime (* 2 2 5)) 100'))
-print(string_calc('/ (* (/ (* (prime (* 2 2 5) 5) 4 3 2) 3) 5 10 2) 2'))
-print(string_calc('/ 19 100'))
-
-
