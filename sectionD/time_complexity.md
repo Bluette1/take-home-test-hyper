@@ -6,8 +6,29 @@ The worst-case time complexity is **O(n)**/Linear time
 
 ## At least two alternative designs that would improve the worst-case time
 
-*  We can keep a pointer/reference to the head and tail(end) of the collection so that we don't always have to traverse through the whole collection before adding a new item. Each time after adding a new item we can point the tail to the last added node. We can modify our add method as follows:
+*  We can keep a pointer/reference to the head and tail(end) of the collection so that we don't always have to traverse through the whole collection before adding a new item. Each time after adding a new item we can point the tail to the last added node. If create a Node class
+
+ class Node {
+  #value;
+  #next;
+  constructor(value, next) {
+    this.#value = value;
+    if (next) this.#next = new Collection(next);
+    else this.#next = null;
+  }
+  get value() {
+    return this.#value;
+  }
+  get next() {
+    return this.#next;
+  }
+
+ }
+
+We can modify our add method as follows:
+
 ```
+class Collection {
 #head = null
 #tail = null
 
@@ -17,7 +38,7 @@ add(value) {
     if (!next) next = this;
     next.#next
     
-    let newNode = new Collection(value);
+    let newNode = new Node(value); 
     if (this.#head) { // Collection is empty
       this.#head = newNode
       this.#tail = newNode
@@ -28,6 +49,8 @@ add(value) {
     }
     
   }
+
+}
 ```
 * We can decide to add the items to the front/head of the list, instead of adding to the end/tail.
 * We can also use a doubly linked collection by using to references/pointers:
