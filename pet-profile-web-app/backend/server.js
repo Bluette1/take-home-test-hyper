@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
@@ -20,10 +21,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to pet profile application." });
 });
 
-const app = express();
-
 const db = require("./app/models");
-const Pet = db.pet;
 
 db.mongoose
   .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
@@ -32,12 +30,14 @@ db.mongoose
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
-    initial();
   })
   .catch(err => {
     console.error("Connection error", err);
     process.exit();
   });
+// routes
+require('./app/routes/auth.routes')(app);
+require('./app/routes/user.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
