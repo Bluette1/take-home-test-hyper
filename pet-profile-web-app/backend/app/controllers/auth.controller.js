@@ -25,7 +25,7 @@ exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
   })
-    .populate("pets", "-__v")
+    .populate("pets")
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
