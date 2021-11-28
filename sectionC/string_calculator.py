@@ -159,8 +159,8 @@ def truncate(num, decimal_places):
   try:
       if (int(num) == num):
         return int(num)
-  except:
-      print('Ooops! OverflowError: cannot convert float infinity to integer. Please try different values.')
+  except OverflowError as e:
+      print('OverflowError! Please try different values:', e)
   return round(num, decimal_places)
 
 def number(num):
