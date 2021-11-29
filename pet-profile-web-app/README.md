@@ -11,6 +11,9 @@ This is a pet registration and tracking application for pets where pet owners ca
 - Redux
 - JSON Web Token (JWT)
 
+## Live Demo link
+- [Deployed site on Heroku](https://pet-profile-app.herokuapp.com/)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -23,14 +26,6 @@ To get a local copy up and running follow these simple example steps.
 
 ```
 cd frontend
-```
-
-- Create a `.env.development` file in the root repository of the project and paste the following:
-```REACT_APP_REQUEST_OPTIONS_HOST=<hostname>
-REACT_APP_REQUEST_OPTIONS_PORT=<apiPort>
-REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=<protocol>
-PORT=<port>
- ```
 
 - Create a `.env.development` file in the root repository of the project and paste the following:
 
@@ -38,6 +33,7 @@ PORT=<port>
 REACT_APP_REQUEST_OPTIONS_HOST=localhost
 REACT_APP_REQUEST_OPTIONS_PORT=8080
 REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=http
+PORT=8081
 
 ```
 Run the following commands to start the react front end application:
