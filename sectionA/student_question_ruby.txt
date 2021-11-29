@@ -1,0 +1,19 @@
+Student Question
+
+Hi there,
+I’m having issues with the custom spellchecker I was asked to build. When I use
+the input “cat ct”, I’m not getting “cat *ct*” as expected. Could you please point
+me in the right direction?
+Thanks,
+Student
+
+Task
+For context, the task the student is working on is as follows:
+● Create a custom spellchecker.
+● The application should take as input a string of words separated by spaces.
+● Any incorrectly spelt words should have an asterisk on either side.
+○ For example, “cat ct” -> “cat *ct*”
+● Eventually, it should be able to check the words of common types of pets,
+namely cat, dog, rabbit, hamster, budgie and parrot, with the potential to
+expand this in the future.
+● You should not use a loop to solve the problem
