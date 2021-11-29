@@ -23,18 +23,20 @@ const PetItem = ({ pet }) => {
       onClick={handleClick}
     >
       <div>
-        {missing && <p>Missing</p> }
+        
         <button
           className="view btn-primary mb-2"
           onClick={handleClick}
           data-testid="action-button"
           type="button"
+          disabled="true"
         >
           View pet
         </button>
         {/* <img src={imageUrl} alt="pet" /> */}
       </div>
       <>
+         {missing && <p>Missing</p> }
         <h4>Name: {name.toUpperCase()}</h4>
         <h4>
          Age: {age}
