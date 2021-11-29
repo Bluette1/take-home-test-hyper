@@ -9,7 +9,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/api/test/all
+GET http://localhost:8080/api/public
 
 ###
 
@@ -23,7 +23,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/api/test/user
+GET http://localhost:8080/api/user
 x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYTQwYTU3YWYwZDNlMWYxNmYzMjRiNSIsImlhdCI6MTYzODE0MTAyMiwiZXhwIjoxNjM4MjI3NDIyfQ.Nvq19fP2OW2B4GO4unxGQ0yrcAL5FCpztNNM4LSo37M
 
 ###
