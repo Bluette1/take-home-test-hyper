@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { Switch, Route, Link, Router } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./containers/Home";
 import Profile from "./components/Profile";
+import PetForm from "./components/PetForm";
 import history from "./helpers/history";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { logout } from './actions/auth';
-import { clearMessage } from './actions/message';
+import { logout } from "./actions/auth";
+import { clearMessage } from "./actions/message";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -42,28 +43,45 @@ const App = () => {
                 Home
               </Link>
             </li>
-            {!currentUser && (<li className="nav-item">
-              <Link to="/signup" className="nav-link">
-                Register
-              </Link>
-            </li>)}
+            {!currentUser && (
+              <li className="nav-item">
+                <Link to="/signup" className="nav-link">
+                  Register
+                </Link>
+              </li>
+            )}
 
-           {!currentUser && <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Login
-              </Link>
-              {message && (
+            {!currentUser && (
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+                {message && (
                   <span className="alert alert-danger">{message}</span>
                 )}
-            </li>}
-           {currentUser && <li className="nav-item">
+              </li>
+            )}
+            {currentUser && (
+              <li className="nav-item">
+                <Link to="/add" className="nav-link">
+                  Add Pet
+                </Link>
+                {message && (
+                  <span className="alert alert-danger">{message}</span>
+                )}
+              </li>
+            )}
+
+            {currentUser && (
+              <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={logOut}>
                   Logout
                 </a>
                 {message && (
                   <span className="alert alert-danger">{message}</span>
                 )}
-            </li>}
+              </li>
+            )}
           </div>
         </nav>
 
@@ -73,6 +91,7 @@ const App = () => {
             <Route exact path="/signup" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/profile" component={Profile} />
+            <Route path="/add" component={PetForm} />
           </Switch>
         </div>
       </div>

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Pet = mongoose.model(
-  "Role",
+  "Pet",
   new mongoose.Schema({
     name: String,
     age: Number,
@@ -11,6 +11,10 @@ const Pet = mongoose.model(
     missing:{
       type: Boolean,
       default: false,
+    },
+    img:{
+        data: Buffer,
+        contentType: String
     }
   })
 );

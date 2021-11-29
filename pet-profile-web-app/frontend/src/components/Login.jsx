@@ -50,7 +50,8 @@ const Login = ({ history }) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login({ username, password })
+      try {
+        AuthService.login({ username, password })
         .then((response) => {
           const user = response.data;
           localStorage.setItem('user', JSON.stringify(user));
@@ -71,6 +72,19 @@ const Login = ({ history }) => {
           dispatch(setMessage(message));
           setLoading(false);
         });
+        
+      } catch (error) {
+        const message = (error.response
+          && error.response.data
+          && error.response.data.message)
+          || error.message
+          || error.toString();
+
+        dispatch(loginFail());
+        dispatch(setMessage(message));
+        setLoading(false);      
+      }
+
     } else {
       setLoading(false);
     }
