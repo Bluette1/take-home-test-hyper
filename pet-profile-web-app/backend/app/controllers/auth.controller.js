@@ -25,10 +25,9 @@ exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
   })
-    .populate("pets")
     .exec((err, user) => {
       if (err) {
-        res.status(500).send({ message: err });
+        res.status(500).send({ message: 'Internal server error', err });
         return;
       }
 

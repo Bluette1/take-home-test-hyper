@@ -1,7 +1,8 @@
 import axios from "axios";
+import { httpProtocol, host, port } from './env.variables';
 
 export default axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: `${httpProtocol}://${host}:${port}/api`,
   headers: {
     "Content-type": "application/json"
   }
