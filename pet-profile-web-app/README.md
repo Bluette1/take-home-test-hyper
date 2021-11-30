@@ -12,7 +12,8 @@ This is a pet registration and tracking application for pets where pet owners ca
 - JSON Web Token (JWT)
 
 ## Live Demo link
-- [Deployed site on Heroku](https://pet-profile-app.herokuapp.com/)
+- [Deployed frontend site on Heroku](https://pet-profile-app.herokuapp.com/)
+- [Deployed backend site on Heroku] (https://pet-profile-api.herokuapp.com/)
 
 ## Getting Started
 

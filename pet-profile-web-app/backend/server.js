@@ -2,11 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dbConfig = require("./app/config/db.config");
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "*"
 };
 
 app.use(cors(corsOptions));
@@ -22,9 +25,9 @@ app.get("/", (req, res) => {
 });
 
 const db = require("./app/models");
-
+const MONGODB_URI = process.env.MONGODB_URI;
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`${MONGODB_URI}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
