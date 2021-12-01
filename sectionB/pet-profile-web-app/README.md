@@ -13,7 +13,7 @@ This is a pet registration and tracking application for pets where pet owners ca
 
 ## Live Demo link
 - [Deployed frontend site on Heroku](https://pet-profile-app.herokuapp.com/)
-- [Deployed backend site on Heroku] (https://pet-profile-api.herokuapp.com/)
+- [Deployed backend site on Heroku](https://pet-profile-api.herokuapp.com/)
 
 ## Getting Started
 
@@ -27,30 +27,39 @@ To get a local copy up and running follow these simple example steps.
 
 ```
 cd frontend
+```
 
 - Create a `.env.development` file in the root repository of the project and paste the following:
 
 ```
 REACT_APP_REQUEST_OPTIONS_HOST=localhost
+
 REACT_APP_REQUEST_OPTIONS_PORT=8080
+
 REACT_APP_REQUEST_OPTIONS_HTTP_PROTOCOL=http
+
 PORT=8081
 
 ```
+
 Run the following commands to start the react front end application:
+
 ```
 yarn install
 yarn start
 
 ```
 
+
 Open a new terminal and run backend Nodejs express server: 
+
+
 ```
 cd backend && yarn install
 node server.js
-
 ```
 
+Open [http://localhost:8081](http://localhost:8081) to view it in the browser.
 
 ### Login
 The user can login in and create an account. 
@@ -64,12 +73,6 @@ The user can login in and create an account.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-
-### `cd frontend && yarn start`
-
-Run the app in the development mode.\
-Open [http://localhost:8081](http://localhost:8081) to view it in the browser.
 
 ### Deployment
 
