@@ -15,7 +15,6 @@ const Home = () => {
 
       PetService.getPets()
         .then((response) => {
-          console.log('response.data:::::::', response.data)
           dispatch(registerPets(response.data));
         })
         .catch((error) => {
