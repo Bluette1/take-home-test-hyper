@@ -69,15 +69,18 @@ const PetForm = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      const res = await PetService.createPet({
-        name,
-        image,
-        age,
-        sex,
-        weight,
-        color,
-        missing
-      });
+      //Use form data to post data
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('image', image);
+      formData.append('age', age);
+      formData.append('sex', sex);
+      formData.append('weight', weight);
+      formData.append('color', color);
+      formData.append('missing', missing);
+
+      const res = await PetService.createPet(formData);
       if (res.status !== 201 || !res) {
         setLoading(false);
       } else {

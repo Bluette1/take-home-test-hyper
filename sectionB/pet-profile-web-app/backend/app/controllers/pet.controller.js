@@ -3,7 +3,18 @@ const Pet = db.pet;
 const User = db.user;
 
 exports.addPet = async (req, res) => {
-  const pet = new Pet(req.body.data);
+  const url = req.protocol + "://" + req.get("host");
+  const { name, age, sex, weight, color, missing, } = req.body;
+  const pet = new Pet({
+    name,
+    age,
+    sex,
+    weight,
+    color,
+    missing,
+    image: url + "/uploads/" + req.file.filename,
+
+  });
 
   pet.save((err, pet) => {
     if (err) {
@@ -12,10 +23,9 @@ exports.addPet = async (req, res) => {
     }
     const userId = req.userId;
     const user = User.findById(userId).exec((err, user) => {
-
       user.pets.push(pet.id);
       user.save((err, user) => {
-        res.send({ message: "Pet was added successfully!" });
+        res.status(201).send({ message: "Pet was added successfully!" });
       });
     });
   });
@@ -31,17 +41,14 @@ exports.getPets = (req, res) => {
   });
 };
 
-
-
 exports.getPet = (req, res) => {
-
   Pet.findById(id).exec((err, pet) => {
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
     if (!pet) {
-      res.status(404).send({message: 'Not Found'})
+      res.status(404).send({ message: "Not Found" });
     }
     res.send(pet);
   });

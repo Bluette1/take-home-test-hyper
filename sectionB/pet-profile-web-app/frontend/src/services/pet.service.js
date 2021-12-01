@@ -5,7 +5,7 @@ const headers = authHeader();
 
 class PetService {
   createPet(data) {
-    return http.post("/pets", { data }, {headers});
+    return http.post("/pets", data, {headers});
   }
   getPets() {
     return http.get("/pets", {headers});

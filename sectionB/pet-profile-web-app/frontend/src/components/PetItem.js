@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const PetItem = ({ pet }) => {
   const history = useHistory();
   const {
-    name, age, sex, missing, weight, color,
+    name, age, sex, missing, weight, color, image
   } = pet;
   const { user: currentUser } = useSelector((state) => state.auth);
   const handleClick = () => {
@@ -33,7 +33,7 @@ const PetItem = ({ pet }) => {
         >
           View pet
         </button>
-        {/* <img src={imageUrl} alt="pet" /> */}
+        <img src={image} alt="pet" />
       </div>
       <>
          {missing && <p>Missing</p> }
